@@ -1,0 +1,93 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+
+class Node{
+    public:
+  int data;
+  Node* next;
+  Node*prev;
+
+    Node(int data){
+    this->data=data;
+    this->next=NULL;
+    this->prev=NULL;
+    }
+};
+//👉------------------------------------------------------------
+void insertAtHead(Node*&head,int data){
+    if(head==NULL){
+        Node*temp=new Node(data);
+        head=temp;
+    }
+    else{
+    Node*temp=new Node(data);
+    temp->next=head;
+    head->prev=temp;
+    head=temp;}
+}
+void deletFromHead(Node*&head){
+    if(head==NULL)cout<<"D-LL empty";
+    else{
+        head=head->next;
+        if(head!=NULL)
+        head->prev=NULL;
+    }
+}
+//👉------------------------------------------------------------
+void inserAtTail(Node*& Tail,int data){
+    if(Tail==NULL){
+        Node*temp=new Node(data);
+        Tail=temp;
+    }
+    else{
+        Node*temp=new Node(data);
+        Tail->next=temp;
+        temp->prev=Tail;
+        Tail=temp;
+    }
+}
+void deletFromTail(Node*&Tail){
+    if(Tail==NULL)cout<<"D-LL empty";
+    else{
+        Tail=Tail->prev;
+        Tail->next=NULL;
+    }
+}
+void print(Node*&head){
+    Node*cur=head;
+    Node*rev=cur;
+    while(cur!=NULL){
+        rev=cur;
+        cout<<cur->data<<" ";
+        cur=cur->next;
+    }
+//👉print form revese direction;
+    cout<<"\nreverse print\n";
+    while(rev!=NULL){
+        cout<<rev->data<<" ";
+        rev=rev->prev;
+    }
+}
+int main(){
+    Node* head=NULL;
+    insertAtHead(head,10);
+    insertAtHead(head,20);
+    insertAtHead(head,30);
+    print(head);
+    cout<<"\n";
+    deletFromHead(head);
+    deletFromHead(head);
+    deletFromHead(head);
+    print(head);
+ //👉 insert at tail
+    Node* tail=NULL;
+    Node*mark=new Node(10);
+    tail=mark;
+    inserAtTail(tail,20);
+    inserAtTail(tail,30);
+    inserAtTail(tail,40);
+    print(mark);cout<<"\n";
+    deletFromTail(tail);
+    print(mark);
+}
