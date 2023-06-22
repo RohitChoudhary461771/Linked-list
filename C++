@@ -1,0 +1,91 @@
+#include <iostream>
+using namespace std;
+
+class node{
+  public:
+    int data;
+    node*next;
+    node(int data){
+        this->data=data;
+        this->next=NULL;
+    }
+};
+//👉----------------------------------
+
+void insertAtHead(node*&head,int data){
+    node*temp=new node(data);
+    temp->next=head;
+    head=temp;
+}
+void deleteFromHead(node*&head){
+    if(head==0)cout<<"LL empty";
+    else
+    head=head->next;
+}
+
+//👉----------------------------------
+
+void insertAtTail(node*&head,int data){
+    node*temp=new node(data);
+    head->next=temp;
+    head=temp;
+}
+void deleteFromtail(node*&tail){
+    if(tail==NULL)tail=NULL;
+    else{
+        node*temp=tail;
+        node*check=temp;
+        while(temp->next!=NULL){
+            check=temp;
+            temp=temp->next;
+        }
+        check->next=NULL;
+        
+    }
+}
+void print(node*list){
+    node*temp=list;
+    while(temp){
+        cout<<temp->data<<" ";
+        temp=temp->next;
+    }
+}
+int main() {
+    // Write C++ code here
+    node*god=new node(10);
+    node*tail=god;
+    node*head=god;
+    
+//👉 insertion at head;
+    
+      insertAtHead(head,20);
+      insertAtHead(head,30);
+      insertAtHead(head,40);
+      insertAtHead(head,50);
+      print(head);
+    cout<<endl;
+//👉 delete from head
+    deleteFromHead(head);
+    deleteFromHead(head);
+    deleteFromHead(head);
+    deleteFromHead(head);
+    deleteFromHead(head);
+    deleteFromHead(head);
+    print(head);
+    cout<<endl;
+//👉 insertion at tail.
+    insertAtTail(tail,20);
+    insertAtTail(tail,30);
+    insertAtTail(tail,40);
+    insertAtTail(tail,50);
+    print(god);
+     cout<<endl;
+//👉 deletion at tail.
+    deleteFromtail(god);
+    deleteFromtail(god);
+    deleteFromtail(god);
+    
+  
+    print(god);
+    return 0;
+}
