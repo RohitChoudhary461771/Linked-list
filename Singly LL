@@ -3,89 +3,124 @@ using namespace std;
 
 class node{
   public:
-    int data;
-    node*next;
-    node(int data){
-        this->data=data;
-        this->next=NULL;
-    }
+  int data;
+  node* next;
+  node(int data){
+      this->data=data;
+      this->next=NULL;
+  }
 };
-//👉----------------------------------
+node* mark=NULL;
 
-void insertAtHead(node*&head,int data){
-    node*temp=new node(data);
-    temp->next=head;
-    head=temp;
-}
-void deleteFromHead(node*&head){
-    if(head==0)cout<<"LL empty";
-    else
-    head=head->next;
-}
-
-//👉----------------------------------
-
-void insertAtTail(node*&head,int data){
-    node*temp=new node(data);
-    head->next=temp;
-    head=temp;
-}
-void deleteFromtail(node*&tail){
-    if(tail==NULL)tail=NULL;
+//👉 insertAt head
+void insertAtHead(int data,node* & head){
+    node* temp=new node(data);
+    if(head==NULL){
+        head=temp;
+    }
     else{
-        node*temp=tail;
-        node*check=temp;
+        temp->next=head;
+        head=temp;
+    }
+}
+void print(node* head){
+    if(head==NULL)cout<<"Empty ll";
+    else{
+        node* temp=head;
+        while(temp!=NULL){
+            cout<<temp->data<<" ";
+            temp=temp->next;
+        }
+    }
+}
+//👉 delet from head
+void deletHead(node*& head){
+    if(head==NULL)cout<<" LL is empty";
+    if(head->next==NULL)
+    {
+      head=NULL;
+    }
+    else {
+    node*temp=head;
+    node*check=temp;
+    while(temp->next!=NULL){
+        check=temp;
+        temp=temp->next;
+    }
+    check->next=NULL;
+}
+    
+}
+// 👉 Insert from  tail
+void insertAtTail(int data,node*& tail){
+    node* temp=new node(data);
+    if(tail==NULL){
+        tail=temp;
+        mark=tail;
+    }
+    else{
+        tail->next=temp;
+        tail=temp;
+    }
+}
+// 👉 delete from  tail
+void deleteTail(){
+    if(mark==NULL)cout<<"empty ll";
+    else if(mark->next==NULL){
+        mark=NULL;
+    }
+    else{
+        node* temp=mark;
+        node* check=temp;
         while(temp->next!=NULL){
             check=temp;
             temp=temp->next;
         }
         check->next=NULL;
-        
     }
 }
-void print(node*list){
-    node*temp=list;
-    while(temp){
+void printTail(){
+    if(mark==NULL)cout<<"empty ll";
+    node* temp=mark;
+    while(temp!=NULL){
         cout<<temp->data<<" ";
         temp=temp->next;
     }
 }
 int main() {
-    // Write C++ code here
-    node*god=new node(10);
-    node*tail=god;
-    node*head=god;
-    
-//👉 insertion at head;
-    
-      insertAtHead(head,20);
-      insertAtHead(head,30);
-      insertAtHead(head,40);
-      insertAtHead(head,50);
-      print(head);
-    cout<<endl;
-//👉 delete from head
-    deleteFromHead(head);
-    deleteFromHead(head);
-    deleteFromHead(head);
-    deleteFromHead(head);
-    deleteFromHead(head);
-    deleteFromHead(head);
+// 👉 Insert from head
+    node* head=NULL;
+    insertAtHead(10,head);
+    insertAtHead(20,head);
     print(head);
-    cout<<endl;
-//👉 insertion at tail.
-    insertAtTail(tail,20);
-    insertAtTail(tail,30);
-    insertAtTail(tail,40);
-    insertAtTail(tail,50);
-    print(god);
-     cout<<endl;
-//👉 deletion at tail.
-    deleteFromtail(god);
-    deleteFromtail(god);
-    deleteFromtail(god);
+    cout<<"After delete";
+// 👉 delete from head
     
-  
-    print(god);
-    return 0;
+    deletHead(head);
+    
+    print(head);
+     deletHead(head);
+     cout<<" Again";
+     print(head);
+    cout<<endl;
+    
+// 👉 Insert from  tail
+    node*tail=NULL;
+    insertAtTail(10,tail);
+    insertAtTail(20,tail);
+    printTail();
+    cout<<"After delete \n";
+// 👉 delete from  tail
+    deleteTail();
+    deleteTail();
+    printTail();
+        return 0;
 }
+
+Output--------------
+20 10 
+After delete 20  
+Again
+Empty ll
+10 20 After delete 
+empty ll
