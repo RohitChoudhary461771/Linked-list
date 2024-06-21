@@ -56,7 +56,8 @@ void deletFromTail(Node*&Tail){
 }
 void print(Node*&head){
     Node*cur=head;
-    Node*rev=cur;
+    Node*rev=cur;//placing the reverse on the tail.
+    if(head==NULL)cout<<"ll is empty \n";
     while(cur!=NULL){
         rev=cur;
         cout<<cur->data<<" ";
@@ -91,3 +92,18 @@ int main(){
     deletFromTail(tail);
     print(mark);
 }
+
+
+//output
+30 20 10 
+reverse print
+10 20 30 
+ll is empty 
+
+reverse print
+10 20 30 40 
+reverse print
+40 30 20 10 
+10 20 30 
+reverse print
+30 20 10 
